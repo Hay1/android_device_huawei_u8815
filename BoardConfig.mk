@@ -14,12 +14,10 @@ TARGET_CPU_ABI2 := armeabi
 
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_ARCH_VARIANT_CPU := cortex-a5
 
 BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
-TARGET_EXTRA_CFLAGS += $(call cc-option,-march=armv7-a -mtune=cortex-a5)
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
@@ -29,8 +27,7 @@ TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 
-# We can't use ION because of nasty liboemcamera problems. :(
-#TARGET_USES_ION := true
+TARGET_USES_ION := true
 
 TARGET_BOOTLOADER_BOARD_NAME := u8815
 TARGET_OTA_ASSERT_DEVICE := u8815,hwu8815,u8818,hwu8818
@@ -102,7 +99,7 @@ WIFI_EXT_MODULE_NAME := "cfg80211"
 TARGET_CUSTOM_WIFI := ../../device/huawei/u8815/libhardware_legacy/wifi/wifi.c
 
 # Kernel 
-TARGET_KERNEL_SOURCE := kernel/huawei/u8815
+TARGET_KERNEL_SOURCE := kernel/huawei/huawei-kernel-3.4
 TARGET_KERNEL_CONFIG := cyanogenmod_u8815_defconfig
 BOARD_KERNEL_CMDLINE := androidboot.hardware=huawei
 BOARD_KERNEL_BASE := 0x00200000
@@ -111,7 +108,7 @@ BOARD_PAGE_SIZE := 2048
 # Recovery
 #BOARD_TOUCH_RECOVERY := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8815/recovery/graphics.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8815/recovery/graphics.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/huawei/u8815/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/huawei/u8815/recovery/etc/init.rc
 BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
